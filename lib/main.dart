@@ -34,8 +34,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NestedScrollViewTestWidget extends StatelessWidget {
-  const NestedScrollViewTestWidget({Key? key, required this.controller})
-      : super(key: key);
+  const NestedScrollViewTestWidget({Key? key, required this.controller}) : super(key: key);
 
   final ScrollController controller;
 
@@ -51,21 +50,12 @@ class NestedScrollViewTestWidget extends StatelessWidget {
           SliverOverlapAbsorber(
             handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
             sliver: MultiSliver(
-              nestedScrollView: true,
               children: [
-                const SliverPinnedHeader(
-                    child: Padding(
-                        padding: EdgeInsets.all(16), child: Text('Bar 1'))),
+                const SliverPinnedHeader(child: Padding(padding: EdgeInsets.all(16), child: Text('Bar 1'))),
                 const SliverToBoxAdapter(
-                    child: Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 32),
-                        child: Text('Text 1'))),
+                    child: Padding(padding: EdgeInsets.symmetric(horizontal: 16, vertical: 32), child: Text('Text 1'))),
                 SliverPinnedHeader(
-                    child: Material(
-                        color: Colors.green,
-                        child: TabBar(
-                            tabs: tabs.map((t) => Tab(text: t)).toList()))),
+                    child: Material(color: Colors.green, child: TabBar(tabs: tabs.map((t) => Tab(text: t)).toList()))),
               ],
             ),
           ),
@@ -78,19 +68,14 @@ class NestedScrollViewTestWidget extends StatelessWidget {
             child: Builder(
               builder: (BuildContext context) {
                 return RefreshIndicator(
-                  edgeOffset:
-                      NestedScrollView.sliverOverlapAbsorberHandleFor(context)
-                              .layoutExtent ??
-                          0,
-                  onRefresh: () async =>
-                      Future.delayed(const Duration(seconds: 1)),
+                  edgeOffset: NestedScrollView.sliverOverlapAbsorberHandleFor(context).layoutExtent ?? 0,
+                  onRefresh: () async => Future.delayed(const Duration(seconds: 1)),
                   child: CustomScrollView(
                     controller: controller,
                     key: PageStorageKey<String>(name),
                     slivers: <Widget>[
                       SliverOverlapInjector(
-                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
-                            context),
+                        handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                       ),
                       SliverFillRemaining(
                         // hasScrollBody: false,
